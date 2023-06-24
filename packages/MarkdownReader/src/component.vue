@@ -24,8 +24,10 @@
       content: {
         handler (newVal) {
           this.getMardownFileContent(newVal)
-  
-          this.update()
+
+          if (typeof window !== 'undefined') {
+            this.update()
+          }
         },
         immediate: true
       }
