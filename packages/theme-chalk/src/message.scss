@@ -1,0 +1,47 @@
+.message {
+  /*message在container父容器中居中
+  该居中方案不能使用flex布局 因为flex会影响到父容器的其他子节点的布局*/
+  position: fixed;
+  left: 50%;
+  top: 15vh;
+  transform: translate(-50%, -15vh);
+  
+  z-index: 10001; // 让该组件的层叠上下文置于顶层
+  border-radius: 5px;
+  padding: 10px 30px;
+  line-height: 1;
+  color: #fff;
+  box-shadow: 0 2px 15px rgba(0,0,0,.15); // 增加盒子阴影
+  transition: 0.4s; // 过渡时间
+  white-space: nowrap; // 防止宽度被挤压而导致文字分行
+
+  /*message内部子元素垂直居中*/
+  display: flex;
+  align-items: center;
+  opacity: 0;
+
+  &-info {
+    background: #f4f4f5;
+    color: #909399;
+  }
+
+  &-success {
+    background-color: #f0f9eb;
+    color: #67c23a;
+  }
+
+  &-warn {
+    background-color: #fdf6ec;
+    color: #e6a23c;
+  }
+
+  &-error {
+    background: #fef0f0;
+    color: #f56c6c;
+  }
+
+  .tip {
+    font-size: 16px;
+  }
+}
+  

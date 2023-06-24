@@ -8,7 +8,12 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
+  "homepage": "https://github.com/library-components/vue-markdown-reader/tree/main/packages/theme-chalk",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/library-components/vue-markdown-reader/tree/main/packages/theme-chalk"
+  },
   "devDependencies": {
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^4.0.0",

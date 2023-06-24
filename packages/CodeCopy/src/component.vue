@@ -24,6 +24,7 @@
   
   <script>
   import Clipboard from 'clipboard' //复制插件
+  import { debounce } from '@/utils/utils.js'
   
   export default {
     name: 'CodeCopy',
@@ -33,20 +34,30 @@
       }
     },
     methods: {
-      copyMessage (value) {
+      copyMessage: debounce(function (value) {
         let clipboard = new Clipboard('.code-data-copy')
         let messsage
   
         clipboard.on('success', (e) => {
           messsage = '复制成功'
+          this.showMessage(messsage, 'success')
           this.$emit('success', e, messsage)
           clipboard.destroy() // 销毁,避免多次点击重复出现
         })
   
         clipboard.on('error', () => {
           messsage = '复制失败'
+          this.showMessage(messsage, 'error')
           this.$emit('success', messsage)
         })
+      }, 1000),
+      showMessage (content, type, duration=3*1000, callback) {
+        this.$message({
+            content: content,
+            type: type,
+            duration: duration,
+            callback: callback
+          });
       }
     }
   }
