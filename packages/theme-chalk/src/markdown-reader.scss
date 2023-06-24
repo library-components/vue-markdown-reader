@@ -1,0 +1,56 @@
+.markdown-body {
+    word-break: break-word;
+    line-height: 1.75;
+    font-weight: 400;
+    font-size: 16px;
+    overflow-x: hidden;
+    color: #252933;
+  
+    /* 因为默认的代码块没有样式，所以添加一个背景色 */
+    .code-copy-added {
+      background: #f8f8f8;
+      color: #333;
+      font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+      margin: 10px 0;
+      text-align: left;
+      border-radius: 3px;
+      position: relative;
+    }
+  
+    .code-copy-added:hover .copy-btn {
+      opacity: 1;
+    }
+
+    pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 6px;
+    }
+  
+    ol {
+      list-style-type: decimal;
+    }
+  
+    ul {
+      list-style-type: disc;
+    }
+  
+    img {
+      display: block;
+    }
+  
+    blockquote {
+      color: #666;
+      padding: 10px 23px;
+      margin: 22px 0;
+      border-left: 4px solid #cbcbcb;
+      background-color: #f8f8f8;
+    }
+  
+    blockquote > p {
+      margin: 10px 0;
+    }
+}

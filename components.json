@@ -1,0 +1,5 @@
+{
+    "index": "./packages/theme-chalk/src/index.scss",
+    "code-copy": "./packages/CodeCopy/index.js",
+    "markdown-reader": "./packages/MarkdownReader/index.js"
+  }

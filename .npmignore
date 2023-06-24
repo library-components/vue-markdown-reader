@@ -1,0 +1,14 @@
+# 忽略目录
+src/
+build/
+
+# 忽略指定文件
+*.map
+.babelrc
+.editorconfig
+.eslintignore
+.gitignore
+.postcssrc.js
+components.json
+package-lock.json
+index.html
