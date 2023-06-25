@@ -1,6 +1,6 @@
 {
   "name": "@personal-lib/vue-markdown-reader",
-  "version": "1.0.2",
+  "version": "1.0.7",
   "description": "一款markdown阅读器",
   "author": "3096015076@qq.com",
   "main": "lib/vue-markdown-reader.common.js",

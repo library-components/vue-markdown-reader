@@ -1,11 +1,13 @@
 .copy-content {
     height: 0;
 }
+
 .icon {
     width: 0.8rem;
     height: 0.8rem;
-    fill: white;
+    fill: currentColor;
 }
+
 .copy-btn {
     user-select: none;
     opacity: 0;

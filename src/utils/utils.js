@@ -46,3 +46,8 @@ export const throttle = (func, limit) => {
         }
     }
 }
+
+/**
+ * 判断是否是dom对象
+ */
+export const isDOM = ( typeof HTMLElement === 'object' ) ? function (obj) { return obj instanceof HTMLElement; } : function (obj) { return obj && typeof obj === 'object' && (obj.nodeType === 1 || obj.nodeType === 9) && typeof obj.nodeName === 'string'; }

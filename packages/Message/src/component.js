@@ -1,6 +1,9 @@
 import getComponentRootDom from "./getComponentRootDom";
 import Icon from "./icon.vue";
 
+const messageList = []
+let messageIndex = 0
+
 /**
  * 消息提示
  * @param {String} content 消息内容
@@ -17,7 +20,15 @@ export default function (options = {}) {
   const container = options.container || document.body;
   const callback = options.callback || undefined;
 
-  const isDOM = ( typeof HTMLElement === 'object' ) ? function (obj) { return obj instanceof HTMLElement; } : function (obj) { return obj && typeof obj === 'object' && (obj.nodeType === 1 || obj.nodeType === 9) && typeof obj.nodeName === 'string'; }
+  messageIndex ++
+  messageList.push({
+    index: messageIndex,
+    content: content,
+    type: type,
+    duration: duration,
+    container: container,
+    callback: callback
+  })
 
   // JS代码生成message元素
   const message = document.createElement("div");
@@ -48,6 +59,7 @@ export default function (options = {}) {
 
   // 正常位置状态的样式
   message.style.opacity = 1;
+  message.style.top += (messageList.length+1) * (message.clientHeight + 20) + 'px'
   message.style.transform = `translate(-50%, -50%)`;
 
   // 淡出效果：正常位置状态 --> 消失状态
@@ -60,7 +72,8 @@ export default function (options = {}) {
   setTimeout(() => {
     // 消失状态的样式
     message.style.opacity = 0;
-    message.style.transform = "translate(-50%, -50%)";
+    // message.style.transform = "translate(-50%, -50%)";
+    message.style.transform = `translate(-50%, -${message.clientHeight*(messageList.length+1)}px)`
 
     // 监听transitionend事件
     message.addEventListener(
