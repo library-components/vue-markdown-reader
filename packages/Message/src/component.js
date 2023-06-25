@@ -20,25 +20,13 @@ export default function (options = {}) {
   const container = options.container || document.body;
   const callback = options.callback || undefined;
 
-  messageIndex ++
-  messageList.push({
-    index: messageIndex,
-    content: content,
-    type: type,
-    duration: duration,
-    container: container,
-    callback: callback
-  })
-
   // JS代码生成message元素
   const message = document.createElement("div");
   // 得到Icon组件的根元素DOM节点
-  const iconDom = getComponentRootDom(Icon, {
-    type
-  })
+  const iconDom = getComponentRootDom(Icon, { type })
 
   // message容器中增加相应的子元素
-  message.innerHTML = `${iconDom.outerHTML}${isDOM(content) ? content : `<span class="tip">${content}</span>`}`;
+  message.innerHTML = `${iconDom.outerHTML}<span class="tip">${content}</span>`;
 
   //添加样式
   message.classList.add('message');
@@ -64,25 +52,67 @@ export default function (options = {}) {
 
   // 淡出效果：正常位置状态 --> 消失状态
   // message容器动画的过渡时间
-  const transitionDuration = parseFloat(
-    getComputedStyle(message).transitionDuration
-  );
+  const transitionDuration = parseFloat(getComputedStyle(message).transitionDuration) * 1000;
 
-  // 进行延迟(duration + transitionDuration)ms
+  const param = {
+    id: `message_${++messageIndex}`,
+    content: content,
+    type: type,
+    clientHeight: message.clientHeight,
+    style: message.style,
+    duration: duration,
+    transitionDuration: transitionDuration,
+    container: container,
+    callback: callback,
+    $el: message,
+    onClose: close(`message_${messageIndex}`, duration, transitionDuration)
+  }
+
+  messageList.push(param)
+}
+
+function close (id, duration, transitionDuration) {
   setTimeout(() => {
-    // 消失状态的样式
+    const { message, index } = findMessageInfoById(id)
+    const len = messageList.length
+    let removedHeight = message.clientHeight
+    messageList.splice(index, 1)
+
     message.style.opacity = 0;
-    // message.style.transform = "translate(-50%, -50%)";
-    message.style.transform = `translate(-50%, -${message.clientHeight*(messageList.length+1)}px)`
+    message.style.transform = `translate(-50%, -${message.clientHeight*(len+1)}px)`
 
     // 监听transitionend事件
-    message.addEventListener(
+    message.$el.addEventListener(
       "transitionend",
       function () {
-        message.remove(); // 删除message容器
-        callback && callback(); // 有回调函数就直接执行
+        message.$el.remove(); // 删除message容器
+        message.callback && message.callback(); // 有回调函数就直接执行
+
+
+        for (let i = index; i < len - 1 ; i++) {
+          let dom = messageList[i]
+
+          if (dom) {
+            dom.style['top'] = parseInt(dom.style['top'], 10) - removedHeight - 16 + 'px';
+          }
+        }
       },
       { once: true }
     );
   }, duration + transitionDuration);
+}
+
+function findMessageInfoById(id) {
+  let message = null
+  let index = -1
+  for (let i=0; i<messageList.length; i++) {
+    if (messageList[i].id === id) {
+      message = messageList[i]
+      index = i
+
+      break
+    }
+  }
+
+  return { message, index }
 }

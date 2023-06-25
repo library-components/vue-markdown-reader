@@ -1,11 +1,16 @@
 {
   "name": "@personal-lib/vue-markdown-reader",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "一款markdown阅读器",
   "author": "3096015076@qq.com",
   "main": "lib/vue-markdown-reader.common.js",
   "license": "MIT",
-  "keywords": ["markdown reader", "MARKDOWN READER", "Markdown Reader", "markdown阅读器"],
+  "keywords": [
+    "markdown reader",
+    "MARKDOWN READER",
+    "Markdown Reader",
+    "markdown阅读器"
+  ],
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.config.js",
     "clean": "rimraf dist && rimraf lib",
