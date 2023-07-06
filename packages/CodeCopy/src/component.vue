@@ -2,7 +2,8 @@
     <div class="copy-content">
       <!-- 复制按钮 -->
       <div class="copy-btn code-data-copy"
-           title="复制" @click="copyMessage"
+           title="复制" 
+           @click="copyMessage"
            data-clipboard-action="copy"
            :data-clipboard-text="code">
         <svg t="1609826359524" class="icon"
@@ -52,7 +53,7 @@
         })
       }, 1000),
       showMessage (content, type, duration=3*1000, callback) {
-        this.$message({
+        this.$toast({
             content: content,
             type: type,
             duration: duration,

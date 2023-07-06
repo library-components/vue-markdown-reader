@@ -1,6 +1,6 @@
 import MarkdownReader from "./MarkdownReader/index";
 import CodeCopy from "./CodeCopy/index";
-import Message from "./Message/index";
+import Toast from "./Toast/index";
 
 const components = [
     MarkdownReader,
@@ -12,7 +12,7 @@ const install = function(Vue) {
         Vue.component(component.name, component);
     });
 
-    Vue.prototype.$message = Message;
+    Vue.prototype.$toast = Toast;
 };
 
 if (typeof window !== "undefined" && window.Vue) {
@@ -23,5 +23,5 @@ export default {
     install,
     MarkdownReader,
     CodeCopy,
-    Message
+    Toast
 };
